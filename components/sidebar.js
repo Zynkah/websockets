@@ -2,7 +2,10 @@ import { Card, Text } from "@nextui-org/react";
 
 export default function Sidebar() {
   return (
-    <Card isHoverable css={{ mw: "450px", backgroundColor: "#bd8c7d" }}>
+    <Card
+      isHoverable
+      css={{ mw: "450px", height: "500px", backgroundColor: "#bd8c7d" }}
+    >
       <Card.Header>
         <Text
           h1
