@@ -34,9 +34,11 @@ export default function WebSocketComponent() {
             </Card.Header>
             <Card.Divider />
             <Card.Body css={{ padding: "1rem" }}>
+              <Text css={{ color: "silver" }}>
+                @ {Date("d-m-Y H:i:s", event.timestamp)}
+              </Text>
               <Text>{event.message}</Text>
             </Card.Body>
-            <Card.Divider />
             <Card.Footer>
               <Text css={{ color: "blue" }}>#{event.tags}</Text>
             </Card.Footer>
