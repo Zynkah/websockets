@@ -12,6 +12,19 @@ import {
 let counter = 0;
 let eventFrequencyRate = 0;
 
+function formatTimestamp(timestamp) {
+  const date = new Date(timestamp);
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+  return date.toLocaleString("en-US", options);
+}
+
 export default function WebSocketComponent() {
   const [events, setEvents] = useState([]);
   const [previousEventTime, setPreviousEventTime] = useState(Date.now());
@@ -108,7 +121,7 @@ export default function WebSocketComponent() {
                 <Card.Divider />
                 <Card.Body css={{ padding: "1rem" }}>
                   <Text css={{ color: "#bd8c7d" }}>
-                    @ {Date("d-m-Y H:i:s", event.timestamp)}
+                  @ {formatTimestamp(event.timestamp)}
                   </Text>
                   <Text css={{ margin: "1rem" }}>{event.message}</Text>
                 </Card.Body>
