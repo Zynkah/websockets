@@ -8,22 +8,11 @@ import {
   Col,
   Progress,
 } from "@nextui-org/react";
+import formatTimestamp from "./formattedTime";
 
 let counter = 0;
 let eventFrequencyRate = 0;
 
-function formatTimestamp(timestamp) {
-  const date = new Date(timestamp);
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  };
-  return date.toLocaleString("en-US", options);
-}
 
 export default function WebSocketComponent() {
   const [events, setEvents] = useState([]);
