@@ -86,13 +86,13 @@ export default function WebSocketComponent() {
                       css={{ marginRight: "1rem" }}
                     />
                     <Text>{event.user.name}</Text>
-                    <Text css={{ marginLeft: "1rem", color: "silver" }}>
+                    <Text css={{ marginLeft: "1rem", color: "#bd8c7d" }}>
                       @{event.user.username}
                     </Text>
                   </Card.Header>
                   <Card.Divider />
                   <Card.Body css={{ padding: "1rem" }}>
-                    <Text css={{ color: "silver" }}>
+                    <Text css={{ color: "#bd8c7d" }}>
                       @ {Date("d-m-Y H:i:s", event.timestamp)}
                     </Text>
                     <Text css={{ margin: "1rem" }}>{event.message}</Text>
