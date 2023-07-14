@@ -115,10 +115,12 @@ export default function WebSocketComponent() {
                 </Card.Body>
                 <Card.Footer>
                   {event.tags.map((tag, index) => (
-                    <Text key={index} css={{ color: "steelblue" }}>
+                    <Text
+                      key={index}
+                      css={{ color: "steelblue", marginInlineStart: "0.5rem" }}
+                    >
                       #{tag}
                     </Text>
-                    
                   ))}
                 </Card.Footer>
               </Container>
