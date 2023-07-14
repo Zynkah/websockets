@@ -13,7 +13,6 @@ import formatTimestamp from "./formattedTime";
 let counter = 0;
 let eventFrequencyRate = 0;
 
-
 export default function WebSocketComponent() {
   const [events, setEvents] = useState([]);
   const [previousEventTime, setPreviousEventTime] = useState(Date.now());
@@ -110,12 +109,17 @@ export default function WebSocketComponent() {
                 <Card.Divider />
                 <Card.Body css={{ padding: "1rem" }}>
                   <Text css={{ color: "#bd8c7d" }}>
-                  @ {formatTimestamp(event.timestamp)}
+                    @ {formatTimestamp(event.timestamp)}
                   </Text>
                   <Text css={{ margin: "1rem" }}>{event.message}</Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Text css={{ color: "steelblue" }}>#{event.tags}</Text>
+                  {event.tags.map((tag, index) => (
+                    <Text key={index} css={{ color: "steelblue" }}>
+                      #{tag}
+                    </Text>
+                    
+                  ))}
                 </Card.Footer>
               </Container>
             </Card>
