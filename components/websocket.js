@@ -9,8 +9,8 @@ import {
   Progress,
 } from "@nextui-org/react";
 
-export let counter = 0;
-export let eventFrequencyRate = 0;
+let counter = 0;
+let eventFrequencyRate = 0;
 
 export default function WebSocketComponent() {
   const [events, setEvents] = useState([]);
@@ -40,7 +40,6 @@ export default function WebSocketComponent() {
       <Row gap={1}>
         <Col span={4}>
           <Text
-            h1
             size={30}
             css={{
               color: "#bd8c7d",
@@ -60,7 +59,6 @@ export default function WebSocketComponent() {
           >
             <Card.Header>
               <Text
-                p
                 size={20}
                 css={{
                   color: "#ffffff",
@@ -69,13 +67,16 @@ export default function WebSocketComponent() {
                 weight="bold"
               >
                 Event Frequency: {eventFrequencyRate} events per minute
-                <Progress color="gradient" value={eventFrequencyRate} />
               </Text>
             </Card.Header>
+            <Progress
+              color="gradient"
+              value={eventFrequencyRate}
+              css={{ margin: "0.5rem" }}
+            />
             <Card.Divider />
             <Card.Body>
               <Text
-                p
                 size={20}
                 css={{
                   color: "#ffffff",
