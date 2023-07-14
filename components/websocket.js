@@ -16,7 +16,7 @@ export default function WebSocketComponent() {
 
       const currentTime = Date.now();
       const timeElapsed = currentTime - previousEventTime;
-      const rate = counter / (timeElapsed / 10000);
+      const rate = counter / (timeElapsed / 1000);
       setEventFrequency(rate.toFixed(2)); 
       setPreviousEventTime(currentTime);
     };
