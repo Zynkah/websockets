@@ -3,7 +3,7 @@ import WebSocketComponent from "./websocket";
 
 export default function Cards() {
   return (
-    <Card isHoverable css={{ mw: "800px", backgroundColor: " #49494b"  }}>
+    <Card css={{ mw: "1500px" }}>
       <WebSocketComponent />
     </Card>
   );

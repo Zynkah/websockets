@@ -27,86 +27,91 @@ export default function WebSocketComponent() {
   }, []);
 
   return (
-    <>
-      <Container responsive gap={0}>
-        <Row gap={1}>
-          <Col span={4}>
-            <Text
-              h1
-              size={30}
-              css={{
-                color: "#ffffff",
-                padding: "1rem",
-              }}
-              weight="bold"
-            >
-              Statistics
-            </Text>
-            <Card
-              isHoverable
-              css={{ height: "350px", backgroundColor: "#bd8c7d" }}
-            >
-              <Card.Header>
-                <Text
-                  p
-                  size={20}
-                  css={{
-                    color: "#ffffff",
-                    padding: "1rem",
-                  }}
-                  weight="bold"
-                >
-                  Event Frequency: {eventFrequency} events per second
-                </Text>
-              </Card.Header>
-              <Card.Divider />
-              <Card.Body>
-                <Text
-                  p
-                  size={20}
-                  css={{
-                    color: "#ffffff",
-                    padding: "1rem",
-                  }}
-                  weight="bold"
-                >
-                  Event Counter : {counter}
-                </Text>
-              </Card.Body>
+    <Container responsive gap={0}>
+      <Row gap={1}>
+        <Col span={4}>
+
+          <Text
+            h1
+            size={30}
+            css={{
+              color: "#bd8c7d",
+              padding: "1rem",
+            }}
+            weight="bold"
+          >
+            Statistics
+          </Text>
+
+          <Card
+            css={{
+              height: "320px",
+              backgroundColor: "#bd8c7d",
+              paddingRight: "1rem",
+            }}
+          >
+            <Card.Header>
+              <Text
+                p
+                size={20}
+                css={{
+                  color: "#ffffff",
+                  padding: "1rem",
+                }}
+                weight="bold"
+              >
+                Event Frequency: {eventFrequency} events per second
+              </Text>
+            </Card.Header>
+            <Card.Divider />
+            <Card.Body>
+              <Text
+                p
+                size={20}
+                css={{
+                  color: "#ffffff",
+                  padding: "1rem",
+                }}
+                weight="bold"
+              >
+                Event Counter : {counter}
+              </Text>
+            </Card.Body>
+          </Card>
+
+        </Col>
+        
+        <Col span={8}>
+          {events.map((event, index) => (
+            <Card key={index} css={{ mw: "800px", marginBottom: "1rem" }}>
+              <div key={event.id}>
+                <Card.Header>
+                  <Avatar
+                    rounded
+                    src={event.user.image_url}
+                    css={{ marginRight: "1rem" }}
+                  />
+                  <Text>{event.user.name}</Text>
+                  <Text css={{ marginLeft: "1rem", color: "#bd8c7d" }}>
+                    @{event.user.username}
+                  </Text>
+                </Card.Header>
+                <Card.Divider />
+                <Card.Body css={{ padding: "1rem" }}>
+                  <Text css={{ color: "#bd8c7d" }}>
+                    @ {Date("d-m-Y H:i:s", event.timestamp)}
+                  </Text>
+                  <Text css={{ margin: "1rem" }}>{event.message}</Text>
+                </Card.Body>
+                <Card.Footer>
+                  <Text css={{ color: "steelblue" }}>#{event.tags}</Text>
+                </Card.Footer>
+              </div>
             </Card>
-          </Col>
-          <Col span={8}>
-            {events.map((event, index) => (
-              <Card key={index} css={{ mw: "800px", marginBottom: "1rem" }}>
-                <div key={event.id}>
-                  <Card.Header>
-                    <Avatar
-                      rounded
-                      src={event.user.image_url}
-                      css={{ marginRight: "1rem" }}
-                    />
-                    <Text>{event.user.name}</Text>
-                    <Text css={{ marginLeft: "1rem", color: "#bd8c7d" }}>
-                      @{event.user.username}
-                    </Text>
-                  </Card.Header>
-                  <Card.Divider />
-                  <Card.Body css={{ padding: "1rem" }}>
-                    <Text css={{ color: "#bd8c7d" }}>
-                      @ {Date("d-m-Y H:i:s", event.timestamp)}
-                    </Text>
-                    <Text css={{ margin: "1rem" }}>{event.message}</Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Text css={{ color: "steelblue" }}>#{event.tags}</Text>
-                  </Card.Footer>
-                </div>
-              </Card>
-            ))}
-          </Col>
-        </Row>
-      </Container>
-    </>
+          ))}
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
