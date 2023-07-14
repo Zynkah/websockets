@@ -17,7 +17,7 @@ export default function WebSocketComponent() {
       const currentTime = Date.now();
       const timeElapsed = currentTime - previousEventTime;
       const rate = counter / (timeElapsed / 1000);
-      setEventFrequency(rate.toFixed(2)); 
+      setEventFrequency(rate.toFixed(2));
       setPreviousEventTime(currentTime);
     };
 
@@ -30,14 +30,25 @@ export default function WebSocketComponent() {
     <>
       <Container responsive gap={0}>
         <Row gap={1}>
-          <Col>
+          <Col span={4}>
+            <Text
+              h1
+              size={30}
+              css={{
+                color: "#ffffff",
+                padding: "1rem",
+              }}
+              weight="bold"
+            >
+              Statistics
+            </Text>
             <Card
               isHoverable
               css={{ height: "350px", backgroundColor: "#bd8c7d" }}
             >
               <Card.Header>
                 <Text
-                  h1
+                  p
                   size={20}
                   css={{
                     color: "#ffffff",
@@ -64,7 +75,7 @@ export default function WebSocketComponent() {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col span={8}>
             {events.map((event, index) => (
               <Card key={index} css={{ mw: "800px", marginBottom: "1rem" }}>
                 <div key={event.id}>
