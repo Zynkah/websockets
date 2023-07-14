@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
-import { Card, Avatar, Text, Container, Row, Col } from "@nextui-org/react";
+import {
+  Card,
+  Avatar,
+  Text,
+  Container,
+  Row,
+  Col,
+  Progress,
+} from "@nextui-org/react";
+
+export let counter = 0;
+export let eventFrequencyRate = 0;
 
 export default function WebSocketComponent() {
   const [events, setEvents] = useState([]);
-  const [counter, setCounter] = useState(0);
   const [previousEventTime, setPreviousEventTime] = useState(Date.now());
-  const [eventFrequency, setEventFrequency] = useState(0);
 
   useEffect(() => {
     const socket = new WebSocket("ws://beeps.gg/stream");
     socket.onmessage = (event) => {
       const eventData = JSON.parse(event.data);
       setEvents((events) => [eventData, ...events]);
-      setCounter((prevCounter) => prevCounter + 1);
+      counter++;
 
       const currentTime = Date.now();
       const timeElapsed = currentTime - previousEventTime;
-      const rate = counter / (timeElapsed / 1000);
-      setEventFrequency(rate.toFixed(2));
+      const rate = counter / (timeElapsed / (1000 * 60));
+      eventFrequencyRate = rate.toFixed(2);
       setPreviousEventTime(currentTime);
     };
 
@@ -30,7 +39,6 @@ export default function WebSocketComponent() {
     <Container responsive gap={0}>
       <Row gap={1}>
         <Col span={4}>
-
           <Text
             h1
             size={30}
@@ -60,7 +68,8 @@ export default function WebSocketComponent() {
                 }}
                 weight="bold"
               >
-                Event Frequency: {eventFrequency} events per second
+                Event Frequency: {eventFrequencyRate} events per minute
+                <Progress color="gradient" value={eventFrequencyRate} />
               </Text>
             </Card.Header>
             <Card.Divider />
@@ -78,13 +87,12 @@ export default function WebSocketComponent() {
               </Text>
             </Card.Body>
           </Card>
-
         </Col>
-        
+
         <Col span={8}>
           {events.map((event, index) => (
             <Card key={index} css={{ mw: "800px", marginBottom: "1rem" }}>
-              <div key={event.id}>
+              <Container key={event.id}>
                 <Card.Header>
                   <Avatar
                     rounded
@@ -106,7 +114,7 @@ export default function WebSocketComponent() {
                 <Card.Footer>
                   <Text css={{ color: "steelblue" }}>#{event.tags}</Text>
                 </Card.Footer>
-              </div>
+              </Container>
             </Card>
           ))}
         </Col>
